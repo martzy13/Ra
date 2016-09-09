@@ -10,6 +10,12 @@ LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
+def colorWipe(ring, color, wait_ms=50):
+        for i in range(ring.numPixels()):
+		        ring.setPixelColor(i, Color(255, 0, 0))
+		        ring.show()
+		        time.sleep(50/1000.0)
+
 # Main program logic follows:
 if __name__ == '__main__':
 	# Create NeoPixel object with appropriate configuration.
@@ -19,10 +25,11 @@ if __name__ == '__main__':
 
 	print ('Press Ctrl-C to quit.')
 	while True:
-              	for i in range(ring.numPixels()):
-		        ring.setPixelColor(i, Color(255, 0, 0))
-		        ring.show()
-		        time.sleep(50/1000.0)
+                colorWipe(ring, Color(255, 0, 0))  # Red wipe
+		colorWipe(ring, Color(0, 255, 0))  # Blue wipe
+		colorWipe(ring, Color(0, 0, 255))  # Green wipe
+
+              	
 		#check time
                 #sunrise in winter sucks. 
                 #if time is between 630 - 700
