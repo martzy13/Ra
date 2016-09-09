@@ -19,16 +19,17 @@ if __name__ == '__main__':
 
 	print ('Press Ctrl-C to quit.')
 	while True:
+              	for i in range(ring.numPixels()):
+		        ring.setPixelColor(i, Color(255, 0, 0))
+		        ring.show()
+		        time.sleep(50/1000.0)
 		#check time
                 #sunrise in winter sucks. 
                 #if time is between 630 - 700
                 #if time is less than 640
                 #low
                 #turn on pixels one at a time over 30 seconds
-		for i in range(ring.numPixels()):                
-                        ring.setPixelColor(i, Color(200,200,200))
-                        ring.show()
-                        time.sleep(100/1000.0) 
+		
                 #if time is less than 650
                 #medium
                 #if time is less than 655
