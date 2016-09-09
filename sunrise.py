@@ -12,9 +12,9 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor 
 
 def colorWipe(ring, color, wait_ms=50):
         for i in range(ring.numPixels()):
-		        ring.setPixelColor(i, Color(255, 0, 0))
-		        ring.show()
-		        time.sleep(50/1000.0)
+		ring.setPixelColor(i, Color(255, 0, 0))
+		ring.show()
+		time.sleep(50/1000.0)
 
 # Main program logic follows:
 if __name__ == '__main__':
