@@ -1,7 +1,10 @@
 #used the strand test as my example layout. 
 import time
+import datetime
+import atexit
 
 from neopixel import *
+from datetime import datetime
 # LED strip configuration:
 LED_COUNT      = 12      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (must support PWM!).
@@ -16,6 +19,11 @@ def colorWipe(ring, color, wait_ms=50):
 		ring.show()
 		time.sleep(wait_ms/1000.0)
 
+def killTheLights(ring):
+        for i in range(ring.numPixels()):
+                ring.setPixelColor(i,Color(0,0,0))
+                ring.show()
+
 # Main program logic follows:
 if __name__ == '__main__':
 	# Create NeoPixel object with appropriate configuration.
@@ -23,6 +31,7 @@ if __name__ == '__main__':
 	# Intialize the library (must be called once before other functions).
 	ring.begin()
 
+        atexit.register(killTheLights(ring))
 	print ('Press Ctrl-C to quit.')
 	while True:
                 colorWipe(ring, Color(255, 0, 0))  # Red wipe
@@ -31,7 +40,8 @@ if __name__ == '__main__':
 
               	
 		#check time
-                #sunrise in winter sucks. 
+                # utc is 4 hours ahead of est
+                # if datetime.now().time().hour 
                 #if time is between 630 - 700
                 #if time is less than 640
                 #low
