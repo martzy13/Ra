@@ -2,9 +2,11 @@
 import time
 import datetime
 import atexit
+import pytz
 
 from neopixel import *
 from datetime import datetime
+
 # LED strip configuration:
 LED_COUNT      = 12      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (must support PWM!).
@@ -30,15 +32,17 @@ if __name__ == '__main__':
 	ring = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
 	# Intialize the library (must be called once before other functions).
 	ring.begin()
-
+	# register killTheLights method on exit of the program
         atexit.register(killTheLights, ring)
 	print ('Press Ctrl-C to quit.')
+	local_time = datetime.now(pytz.timezone("America/New_York"))
+
+
 	while True:
                 colorWipe(ring, Color(255, 0, 0))  # Red wipe
 		colorWipe(ring, Color(0, 255, 0))  # Blue wipe
 		colorWipe(ring, Color(0, 0, 255))  # Green wipe
-
-              	
+              	print(local_time)
 		#check time
                 # utc is 4 hours ahead of est
                 # if datetime.now().time().hour 
