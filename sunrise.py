@@ -20,7 +20,7 @@ def colorWipe(ring, color, wait_ms=50):
 		time.sleep(wait_ms/1000.0)
 
 def killTheLights(ring):
-        for i in range(ring.numPixels()):
+	for i in range(ring.numPixels()):
                 ring.setPixelColor(i,Color(0,0,0))
                 ring.show()
 
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 	# Intialize the library (must be called once before other functions).
 	ring.begin()
 
-        atexit.register(killTheLights(ring))
+        atexit.register(killTheLights, ring)
 	print ('Press Ctrl-C to quit.')
 	while True:
                 colorWipe(ring, Color(255, 0, 0))  # Red wipe
