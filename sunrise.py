@@ -15,7 +15,7 @@ LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
-wakeup_hour = 22
+wakeup_hour = 6
 
 
 def setAllColor(ring, color):
