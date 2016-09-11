@@ -35,25 +35,26 @@ if __name__ == '__main__':
 	# register killTheLights method on exit of the program
         atexit.register(killTheLights, ring)
 	print ('Press Ctrl-C to quit.')
-
+	wakeup_hour = 21
 
 	while True:
 		local_time = datetime.now(pytz.timezone("America/New_York"))
-                colorWipe(ring, Color(255, 0, 0))  # Red wipe
-		colorWipe(ring, Color(0, 255, 0))  # Blue wipe
-		colorWipe(ring, Color(0, 0, 255))  # Green wipe
-              	print(local_time)
-		#check time
-                # utc is 4 hours ahead of est
-                # if datetime.now().time().hour 
-                #if time is between 630 - 700
-                #if time is less than 640
-                #low
-                #turn on pixels one at a time over 30 seconds
-		
-                #if time is less than 650
-                #medium
-                #if time is less than 655
-                #high
-                #if time is less than 700
-                #do all sorts of weird color patterns to try to wake up. 
+              	print(local_time.hour)
+		# check time
+		if local_time.hour == wakeup_hour:
+			print ('TIME TO WAKE UP!')
+			if local_time.minute <= 30:
+				if local_time.minute <= 10:
+					#set brightness low
+			                colorWipe(ring, Color(0, 255, 0))  # Red wipe
+				elif local_time.minute <= 20:
+					#set brightness medium
+					colorWipe(ring, Color(0, 255, 0))  # Green wipe
+				elif local_time.minute <= 25:
+					#set brightness to high
+					colorWipe(ring, Color(0, 255, 0))  # Blue wipe
+				else :
+					# play that funky music white boy. 
+					# flash and strobe and stuff. 
+					print("WOAHKSADFJADSK")
+
