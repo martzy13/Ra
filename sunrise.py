@@ -15,16 +15,21 @@ LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
-def colorWipe(ring, color, wait_ms=50):
+def setAllColor(ring, color):
         for i in range(ring.numPixels()):
 		ring.setPixelColor(i, color)
-		ring.show()
-		time.sleep(wait_ms/1000.0)
+	ring.show()
+		
 
 def killTheLights(ring):
 	for i in range(ring.numPixels()):
                 ring.setPixelColor(i,Color(0,0,0))
-                ring.show()
+	ring.show()
+
+def setAllBrightnewss(ring, level):
+	for i in range(ring.numPixels):
+		ring.setBrightness(i,level)
+	ring.show()
 
 # Main program logic follows:
 if __name__ == '__main__':
@@ -39,20 +44,23 @@ if __name__ == '__main__':
 
 	while True:
 		local_time = datetime.now(pytz.timezone("America/New_York"))
-              	print(local_time.hour)
-		# check time
+              	# print(local_time.hour)
 		if local_time.hour == wakeup_hour:
-			print ('TIME TO WAKE UP!')
+			#print ('TIME TO WAKE UP!')
 			if local_time.minute <= 30:
+		                setAllColor(ring, Color(0, 0, 255))  # Blue
 				if local_time.minute <= 10:
 					#set brightness low
-			                colorWipe(ring, Color(0, 255, 0))  # Red wipe
+					setAllBrightness(ring, 85)
+					time.sleep(1)
 				elif local_time.minute <= 20:
 					#set brightness medium
-					colorWipe(ring, Color(0, 255, 0))  # Green wipe
+					setAllBrightness(ring, 170)
+					time.sleep(1)
 				elif local_time.minute <= 25:
 					#set brightness to high
-					colorWipe(ring, Color(0, 255, 0))  # Blue wipe
+					setAllBrightness(ring, 255)
+					time.sleep(1)
 				else :
 					# play that funky music white boy. 
 					# flash and strobe and stuff. 
