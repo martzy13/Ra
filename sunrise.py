@@ -35,10 +35,10 @@ if __name__ == '__main__':
 	# register killTheLights method on exit of the program
         atexit.register(killTheLights, ring)
 	print ('Press Ctrl-C to quit.')
-	local_time = datetime.now(pytz.timezone("America/New_York"))
 
 
 	while True:
+		local_time = datetime.now(pytz.timezone("America/New_York"))
                 colorWipe(ring, Color(255, 0, 0))  # Red wipe
 		colorWipe(ring, Color(0, 255, 0))  # Blue wipe
 		colorWipe(ring, Color(0, 0, 255))  # Green wipe
