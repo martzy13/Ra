@@ -15,6 +15,7 @@ LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
+# wakeup hour. Will kick off at this time. 
 wakeup_hour = 6
 
 
@@ -38,13 +39,16 @@ if __name__ == '__main__':
 	ring.begin()
 	# register killTheLights method on exit of the program
         atexit.register(killTheLights, ring)
+	#message of how to quit
 	print ('Press Ctrl-C to quit.')
+	# Initial blink to indicate script running
 	ring.setBrightness(85)
-	ring.setPixelColor(1, Color(0,0,255))
+	ring.setPixelColor(1, Color(0,0,255)) # blue
 	ring.show()
 	time.sleep(1)
 	ring.setPixelColor(1,Color(0,0,0))
 	ring.show()
+
 	print("initialized")
 	print("Wakeup time is " +  wakeup_hour +  " am")
 	time.sleep(3)
@@ -52,6 +56,9 @@ if __name__ == '__main__':
 	while True:
 		local_time = datetime.now(pytz.timezone("America/New_York"))
               	print(local_time)
+		# wait 60 seconds in between checking the time.	
+		# will cause a 2 minute delay because of the delay within loop
+		time.sleep(60)
 		if local_time.hour == wakeup_hour:
 			#print ('TIME TO WAKE UP!')
 			#if local_time.minute <= 30:
@@ -61,19 +68,19 @@ if __name__ == '__main__':
 					print("setting brightness to low")
 					ring.setBrightness(20)
 					ring.show()
-					time.sleep(10)
+					time.sleep(60)
 				elif local_time.minute <= 20:
 					#set brightness medium
 					print("setting brightness to medium")
 					ring.setBrightness(100)
 					ring.show()
-					time.sleep(10)
+					time.sleep(60)
 				elif local_time.minute <= 25:
 					#set brightness to high
 					print("setting brightness to high")
 					ring.setBrightness(255)
 					ring.show()
-					time.sleep(10)
+					time.sleep(60)
 				else :
 					# play that funky music white boy. 
 					# flash and strobe and stuff. 
