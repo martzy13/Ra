@@ -15,7 +15,8 @@ LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
-# wakeup hour. Will kick off at this time. 
+# wakeup hour - 24 hour format. Will kick off at this time. 
+# use regular integer
 wakeup_hour = 6
 
 
@@ -50,7 +51,7 @@ if __name__ == '__main__':
 	ring.show()
 
 	print("initialized")
-	print("Wakeup time is " +  wakeup_hour +  " am")
+	print("Wakeup time is " +  str(wakeup_hour))
 	time.sleep(3)
 
 	while True:
