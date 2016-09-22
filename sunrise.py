@@ -44,7 +44,7 @@ if __name__ == '__main__':
 	print ('Press Ctrl-C to quit.')
 	# Initial blink to indicate script running
 	ring.setBrightness(85)
-	ring.setPixelColor(1, Color(0,0,255)) # blue
+	ring.setPixelColor(1, Color(155,155,155)) 
 	ring.show()
 	time.sleep(1)
 	ring.setPixelColor(1,Color(0,0,0))
@@ -67,8 +67,11 @@ if __name__ == '__main__':
 				if local_time.minute <= 10:
 					#set brightness low
 					print("setting brightness to low")
-					ring.setBrightness(20)
+					setAllColor(ring, Color(150, 150, 150))
+					ring.setBrightness(10)
 					ring.show()
+					time.sleep(60)
+					ring.setBrightness(15)
 					time.sleep(60)
 				elif local_time.minute <= 20:
 					#set brightness medium
