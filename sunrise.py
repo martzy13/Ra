@@ -17,7 +17,7 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor 
 
 # wakeup hour - 24 hour format. Will kick off at this time. 
 # use regular integer
-wakeup_hour = 22
+wakeup_hour = 6
 
 def setCountColor(ring, color, count):
 	for i in range(count):
