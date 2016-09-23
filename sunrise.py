@@ -19,6 +19,10 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor 
 # use regular integer
 wakeup_hour = 6
 
+def setCountColor(ring, color, count)
+	for i in range(count):
+		ring.setPixelColor(i, color)
+	ring.show()
 
 def setAllColor(ring, color):
         for i in range(ring.numPixels()):
@@ -67,12 +71,13 @@ if __name__ == '__main__':
 				if local_time.minute <= 10:
 					#set brightness low
 					print("setting brightness to low")
-					setAllColor(ring, Color(150, 150, 150))
-					ring.setBrightness(10)
+					setCountColor(ring, Color(15, 15, 15),6) #set half the pixels to Grey
+					ring.setBrightness(10) #set brightness very low
 					ring.show()
-					time.sleep(60)
-					ring.setBrightness(15)
-					time.sleep(60)
+					time.sleep(60) #wait a minute (601)
+					ring.setBrightness(15) #set brightness to just sort of low
+					time.sleep(240) #Wait a few minute(604)
+					setAllColor(ring, color(50,50,50)) #slightly lighter grey
 				elif local_time.minute <= 20:
 					#set brightness medium
 					print("setting brightness to medium")
