@@ -17,9 +17,9 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor 
 
 # wakeup hour - 24 hour format. Will kick off at this time. 
 # use regular integer
-wakeup_hour = 6
+wakeup_hour = 22
 
-def setCountColor(ring, color, count)
+def setCountColor(ring, color, count):
 	for i in range(count):
 		ring.setPixelColor(i, color)
 	ring.show()
@@ -50,6 +50,10 @@ if __name__ == '__main__':
 	ring.setBrightness(85)
 	ring.setPixelColor(1, Color(155,155,155)) 
 	ring.show()
+	ring.setPixelColor(4, Color(255,0,0)) # green
+	ring.setPixelColor(5,Color(0,255,0)) # red
+	ring.setPixelColor(7, Color(0,0,255)) # blue
+	ring.show()
 	time.sleep(1)
 	ring.setPixelColor(1,Color(0,0,0))
 	ring.show()
@@ -61,34 +65,42 @@ if __name__ == '__main__':
 	while True:
 		local_time = datetime.now(pytz.timezone("America/New_York"))
               	print(local_time)
-		# wait 60 seconds in between checking the time.	
-		# will cause a 2 minute delay because of the delay within loop
-		time.sleep(60)
 		if local_time.hour == wakeup_hour:
 			#print ('TIME TO WAKE UP!')
 			#if local_time.minute <= 30:
 				if local_time.minute <= 10:
 					#set brightness low
 					print("setting brightness to low")
-					setCountColor(ring, Color(15, 15, 15),6) #set half the pixels to Grey
-					ring.setBrightness(10) #set brightness very low
+					setCountColor(ring, Color(0, 50, 0), 6) # set half the pixels to red
+					ring.setBrightness(5) # set brightness very low
 					ring.show()
-					time.sleep(60) #wait a minute (601)
-					ring.setBrightness(15) #set brightness to just sort of low
-					time.sleep(240) #Wait a few minute(604)
-					setAllColor(ring, color(50,50,50)) #slightly lighter grey
+					time.sleep(60) # wait a minute (601)
+					ring.setBrightness(15) # set brightness to just sort of low
+					time.sleep(240) # Wait a few minute(604)
+					setAllColor(ring, Color(0,100,0)) # slightly lighter red
+					ring.show()
 				elif local_time.minute <= 20:
 					#set brightness medium
 					print("setting brightness to medium")
+					setAllColor(ring, Color(0, 150, 0)) # medium red
 					ring.setBrightness(100)
 					ring.show()
-					time.sleep(60)
+					time.sleep(120)
+					setAllColor(ring, Color(150,255,0)) # orange
+					ring.show()
+					time.sleep(120)
+					setAllcolor(ring, Color(255,255,0)) # yellow
+					ring.show()
 				elif local_time.minute <= 25:
 					#set brightness to high
 					print("setting brightness to high")
+					setAllColor(ring, Color(255,0,0)) # green
 					ring.setBrightness(255)
 					ring.show()
 					time.sleep(60)
+					ring.setAllColor(ring, Color(0,0,255)) # blue
+					ring.show()
+					
 				else :
 					# play that funky music white boy. 
 					# flash and strobe and stuff. 
