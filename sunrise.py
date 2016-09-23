@@ -67,7 +67,6 @@ if __name__ == '__main__':
 		if local_time.hour == wakeup_hour:
 			#print ('TIME TO WAKE UP!')
 			#if local_time.minute <= 30:
-		                setAllColor(ring, Color(255, 255, 255))  #white
 				if local_time.minute <= 10:
 					#set brightness low
 					print("setting brightness to low")
