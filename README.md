@@ -1,4 +1,4 @@
-# SunlightLamp
+# Project Ra
 
 A small project I put together using a raspberry pi and a neopixel ring. It will allow you to use the neopixels as an alarm clock. 
 
